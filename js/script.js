@@ -4,6 +4,9 @@
 //use gnereated number to pick the entry in the list
 
 let moves = ['rock','paper','scissor'];
+let pcPoint = 0;
+let playerPoint = 0;
+
 function computerPlay() {
     //let moves = ['rock','paper','scissor'];  //defining a list of moves
     let randomNumber = Math.floor(Math.random() * moves.length); //picking a random number from 1 to 3
@@ -25,23 +28,77 @@ function computerPlay() {
 
 const responseTie = "this is a tie"
 const responseError = "i dont know.."
-
+const compWinResponse = 'you lose'  //need to use variablr in the response
+const playerWinResponse = 'you win'
 function playRound(playerSelection,computerSelection) {
+
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     if (playerSelection == computerSelection) {
         return responseTie
     }
-    else {
-        return responseError
+    else if (playerSelection == "rock") {
+        if(computerSelection == 'paper'){
+            pcPoint++;
+            return compWinResponse
+        } else {
+            playerPoint++;
+            return playerWinResponse
+        }
+  
     }
+    else if (playerSelection == "paper"){
+        if(computerSelection=="scissor"){
+            pcPoint++;
+            return compWinResponse
+        }else {
+            playerPoint++;
+            return playerWinResponse
+        }
+    }
+
+
+    else if (playerSelection == "scissor"){
+        if(computerSelection=="rock"){
+            pcPoint++;
+            return compWinResponse
+        }else {
+            playerPoint++;
+            return playerWinResponse
+        }
+    }
+        
+
+    // else {
+    //     return playerWinResponse
+    // }
 
 
 
 
 }
 
+function game(){
+ 
+    playRound(window.prompt("rock, paper or scissor?"),computerPlay())
+    playRound(window.prompt("rock, paper or scissor?"),computerPlay())
+    playRound(window.prompt("rock, paper or scissor?"),computerPlay())
+    playRound(window.prompt("rock, paper or scissor?"),computerPlay())
+    playRound(window.prompt("rock, paper or scissor?"),computerPlay())
+
+}
+
 // this is to test
-let playerSelection = "rock";
-let computerSelection = computerPlay();
-console.log(playRound(playerSelection,computerSelection));
+let playerSelection = window.prompt("rock, paper or scissor?")
+//let computerSelection = computerPlay();
+
+//console.log(playRound(playerSelection,computerSelection));
+game()
+
+//game function:
+//crete a point counter for player and computer
+//run playRound, if playRound response = computer win, then add point to computer
+//if response = player win, then point to player
+//else, no point if tie. message -> lets do this again. 
+//first to win 5 points win. 
+
